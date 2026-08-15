@@ -1,71 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zen's Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Zen — Luau programmer on Roblox." />
+    <title>Zen — Programmer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="bg-glow" aria-hidden="true"></div>
-
-    <header class="site-header glass">
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#about" data-tab-target="about" aria-label="Zen home"><img id="header-avatar" alt="" /> <span class="brand-address">z3niri.github.io</span></a>
       <nav class="tab-nav" aria-label="Main navigation">
-        <button class="tab-link active" data-tab="home"><strong>Home</strong></button>
-        <button class="tab-link" data-tab="experience"><strong>Past Experiences</strong></button>
-        <button class="tab-link" data-tab="contact"><strong>Contact</strong></button>
+        <button class="tab-link active" data-tab="about">About Me</button>
+        <button class="tab-link" data-tab="projects">Projects</button>
+        <button class="tab-link" data-tab="samples">Samples</button>
+        <button class="tab-link" data-tab="contact">Contact</button>
       </nav>
+      <div class="header-actions"><span id="availability" class="availability"><i></i><b>Open for work</b></span></div>
     </header>
 
     <main class="page-shell">
-      <section id="home" class="tab-panel active">
-        <article class="hero glass">
-          <div class="profile-strip">
-            <div class="avatar-wrap">
-              <img id="discord-avatar" src="" alt="Avatar" />
-              <span id="status-dot" class="status-dot status-offline"></span>
+      <section id="about" class="tab-panel active">
+        <div class="hero-grid">
+          <article class="hero-copy">
+            <p class="eyebrow"><span>01.</span> ABOUT ME</p>
+            <h1><em>Welcome.</em></h1>
+            <p id="intro-text" class="lede"></p>
+            <div class="hero-actions">
+              <button class="primary-btn" data-tab-target="projects">See my projects <span>↗</span></button>
+              <button class="text-btn" data-tab-target="contact">Contact me <span>→</span></button>
             </div>
-            <div class="identity-meta">
-              <h1 class="identity-name">Zen</h1>
-              <p class="identity-alias">Z3NIRI (Formerly DefNot_Zennn)</p>
-              <div class="identity-sub">
-                <p class="identity-role">Roblox Developer</p>
-                <p id="discord-presence" class="presence-label">Offline</p>
-              </div>
+          </article>
+          <aside class="profile-card">
+            <div class="profile-top">
+              <div class="avatar-wrap"><img id="discord-avatar" alt="Zen's Discord avatar" /><span id="status-dot" class="status-dot status-offline"></span></div>
+              <div><p class="profile-name" id="profile-name">Zen</p><p id="discord-presence" class="presence-label">Offline</p></div>
             </div>
-          </div>
-          <div class="about-content">
-            <h3 class="section-title">👋 Introduction</h3>
-            <p class="about-text" id="intro-text"></p>
-            <h3 class="section-title">🛠️ Skills</h3>
-            <ul class="skills-list" id="skills-list"></ul>
-          </div>
-          <div class="hero-chips">
-            <span class="skill-chip"><img src="assets/icons/lua.svg" alt="Lua"></span>
-            <span class="skill-chip"><img src="assets/icons/javascript.svg" alt="JS"></span>
-          </div>
-        </article>
+            <div class="profile-details"><p class="profile-note">Luau Programmer</p><div class="hero-timezone"><span>LOCAL TIME</span><strong id="hero-timezone">--:-- · CET</strong></div></div>
+          </aside>
+        </div>
+        <div class="skills-block">
+          <div class="tools-heading"><p class="eyebrow"><span>02.</span> WORKFLOW TOOLS</p><p>What I use day to day.</p></div>
+          <div id="workflow-tools" class="tool-pills"></div>
+          <div class="tools-heading library-heading"><p class="eyebrow"><span>03.</span> CREATION TOOLS</p><p>Libraries and packages I work with.</p></div>
+          <div id="library-tools" class="tool-pills"></div>
+        </div>
       </section>
 
-      <section id="experience" class="tab-panel">
-        <article class="glass panel-head">
-          <h3 class="section-title">Past Experiences</h3>
-          <p class="total-visits-counter" id="total-visits">Calculating total reach...</p>
-          <p class="experience-subtext">Below are some of the games I contributed to. Click to be redirected there!</p>
-        </article>
-        <ol id="experience-timeline" class="timeline"></ol>
+      <section id="projects" class="tab-panel">
+        <div class="page-heading"><div><p class="eyebrow"><span>02.</span> MY WORK</p><h2>Games I’ve worked on.</h2></div><p id="total-visits" class="reach">Loading visits…</p></div>
+        <div id="project-grid" class="project-grid"></div>
+      </section>
+
+      <section id="samples" class="tab-panel">
+        <div class="page-heading"><div><p class="eyebrow"><span>03.</span> SAMPLES</p><h2>Some of my work.</h2></div><p>Videos and Luau code from things I’ve made.</p></div>
+        <div class="showcase-section"><div class="showcase-title"><span>01</span><div><h3>System Showcase</h3><p>Click a preview to watch it with controls.</p></div></div><div id="system-grid" class="showcase-grid system-grid"></div></div>
+        <div class="showcase-section"><div class="showcase-title"><span>02</span><div><h3>Code Samples</h3><p>Open a sample to read the full source.</p></div></div><div id="code-grid" class="showcase-grid code-grid"></div></div>
       </section>
 
       <section id="contact" class="tab-panel">
-        <article class="glass contact-card">
-          <h3 class="section-title">Contact</h3>
-          <ul id="contact-details"></ul>
-          <div class="social-buttons" id="social-buttons"></div>
-        </article>
+        <div class="contact-layout">
+          <div><p class="eyebrow"><span>04.</span> CONTACT</p><h2><em>Interested?</em></h2><p class="contact-copy">Send me a message if you want to work together or just have a question.</p></div>
+          <article class="contact-card"><p class="contact-label">EMAIL ME</p><a id="email-link" class="email-link" href="#"></a><div class="contact-rule"></div><p class="contact-label">FIND ME ONLINE</p><div id="social-buttons" class="social-buttons"></div></article>
+        </div>
       </section>
     </main>
 
+    <div id="showcase-modal" class="modal" aria-hidden="true"><div class="modal-backdrop" data-close-modal></div><article class="modal-card"><header><div><span id="modal-type"></span><h3 id="modal-title"></h3></div><button type="button" data-close-modal aria-label="Close">×</button></header><div id="modal-content" class="modal-content"></div><p id="modal-description" class="modal-description"></p></article></div>
     <script src="portfolio.config.js"></script>
     <script src="script.js"></script>
   </body>
