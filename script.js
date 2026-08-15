@@ -1,12 +1,34 @@
 const config = window.PORTFOLIO_CONFIG || {};
 const state = { totalVisits: 0, activeTab: "about" };
 let clickAudio;
+let backgroundMusic;
 
 function clickSound() {
   if (!clickAudio) clickAudio = new Audio("assets/sounds/click.mp3");
   clickAudio.currentTime = 0;
   clickAudio.volume = .25;
   clickAudio.play().catch(() => {});
+}
+
+function startBackgroundMusic() {
+  if (!backgroundMusic) {
+    backgroundMusic = new Audio("assets/sounds/music.mp3");
+    backgroundMusic.loop = true;
+    backgroundMusic.preload = "auto";
+    backgroundMusic.volume = .12;
+  }
+  return backgroundMusic.play().catch(() => {});
+}
+
+function bindBackgroundMusic() {
+  startBackgroundMusic();
+  const beginAfterInteraction = () => {
+    startBackgroundMusic();
+    document.removeEventListener("pointerdown", beginAfterInteraction);
+    document.removeEventListener("keydown", beginAfterInteraction);
+  };
+  document.addEventListener("pointerdown", beginAfterInteraction, { once: true });
+  document.addEventListener("keydown", beginAfterInteraction, { once: true });
 }
 
 function setTab(name, updateHash = true) {
@@ -46,7 +68,7 @@ function updateTimezone() {
   const zone = config.contact.timeZone || "Europe/Belgrade";
   const parts = new Intl.DateTimeFormat("en-GB", { timeZone: zone, timeZoneName: "short" }).formatToParts(new Date());
   const abbreviation = parts.find(part => part.type === "timeZoneName")?.value || "CET";
-  const time = new Intl.DateTimeFormat("en-GB", { timeZone: zone, hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date());
+  const time = new Intl.DateTimeFormat("en-US", { timeZone: zone, hour: "numeric", minute: "2-digit", hour12: true }).format(new Date());
   const display = `${time} · ${abbreviation}`;
   document.getElementById("hero-timezone").textContent = display;
 }
@@ -146,6 +168,12 @@ async function renderSamples() {
   codeGrid.querySelectorAll("[data-code]").forEach(card => card.addEventListener("click", () => { const index = card.dataset.code, item = samples[index]; openModal("CODE SAMPLE", item, `<div class="modal-editor-head"><span>${item.file.replace(/\.lua$/i,".luau")}</span></div><pre class="code-window modal-code"><code>${highlightLuau(sources[index])}</code></pre>`); }));
   document.querySelectorAll("[data-close-modal]").forEach(button => button.addEventListener("click", closeModal));
   document.addEventListener("keydown", event => { if (event.key === "Escape") closeModal(); });
+  [codeGrid, document.getElementById("modal-content")].forEach(area => {
+    area.addEventListener("copy", event => event.preventDefault());
+    area.addEventListener("cut", event => event.preventDefault());
+    area.addEventListener("contextmenu", event => event.preventDefault());
+    area.addEventListener("dragstart", event => event.preventDefault());
+  });
 }
 
 async function loadDiscordPresence() {
@@ -160,4 +188,4 @@ async function loadDiscordPresence() {
   } catch {}
 }
 
-bootstrap(); bindNavigation(); renderProjects(); renderSamples(); loadDiscordPresence(); setInterval(loadDiscordPresence, 30000); setInterval(updateTimezone, 60000);
+bootstrap(); bindNavigation(); bindBackgroundMusic(); renderProjects(); renderSamples(); loadDiscordPresence(); setInterval(loadDiscordPresence, 30000); setInterval(updateTimezone, 60000);

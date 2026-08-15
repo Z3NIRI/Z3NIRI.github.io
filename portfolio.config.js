@@ -22,7 +22,7 @@ window.PORTFOLIO_CONFIG = {
   videos: [
     {
       name: "FPS System",
-      file: "assets/videos/FPS%20System.mp4"
+      file: "assets/videos/fps%20system.mp4"
     }
   ],
   codeSamples: [

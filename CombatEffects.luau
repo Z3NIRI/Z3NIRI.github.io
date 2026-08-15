@@ -381,3 +381,4 @@ end
 
 -- // Exports
 return CombatEffects
+
