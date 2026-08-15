@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=4" />
   </head>
   <body>
     <div class="noise" aria-hidden="true"></div>
@@ -20,7 +20,7 @@
         <button class="tab-link" data-tab="samples">Samples</button>
         <button class="tab-link" data-tab="contact">Contact</button>
       </nav>
-      <div class="header-actions"><span id="availability" class="availability"><i></i><b>Open for work</b></span></div>
+      <div class="header-actions"><span id="availability" class="availability"><i></i><b>Open for work</b></span><button id="music-toggle" class="music-toggle" type="button" aria-label="Mute background music"><span aria-hidden="true">♫</span><b>Mute Music</b></button></div>
     </header>
 
     <main class="page-shell">
@@ -71,8 +71,7 @@
     </main>
 
     <div id="showcase-modal" class="modal" aria-hidden="true"><div class="modal-backdrop" data-close-modal></div><article class="modal-card"><header><div><span id="modal-type"></span><h3 id="modal-title"></h3></div><button type="button" data-close-modal aria-label="Close">×</button></header><div id="modal-content" class="modal-content"></div><p id="modal-description" class="modal-description"></p></article></div>
-    <button id="music-toggle" class="music-toggle" type="button" aria-label="Mute background music"><span aria-hidden="true">♫</span><b>Mute Music</b></button>
-    <script src="portfolio.config.js"></script>
-    <script src="script.js"></script>
+    <script src="portfolio.config.js?v=4"></script>
+    <script src="script.js?v=4"></script>
   </body>
 </html>
