@@ -23,6 +23,15 @@ window.PORTFOLIO_CONFIG = {
     {
       name: "FPS System",
       file: "assets/videos/fps%20system.mp4"
+    },
+    {
+      name: "Digging + Collectible System",
+      file: "assets/videos/digging%20system.mp4"
+    },
+    {
+      name: "BMX For Brainrots (Plot System, Carrying System, Upgrade System...)",
+      file: "assets/videos/bmx%20for%20brainrots.mp4",
+      description: "I scripted the entire game, except for the bike system."
     }
   ],
   codeSamples: [
