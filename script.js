@@ -15,12 +15,31 @@ function startBackgroundMusic() {
     backgroundMusic = new Audio("assets/sounds/music.mp3");
     backgroundMusic.loop = true;
     backgroundMusic.preload = "auto";
-    backgroundMusic.volume = .12;
+    backgroundMusic.volume = .06;
   }
+  if (backgroundMusic.muted) return Promise.resolve();
   return backgroundMusic.play().catch(() => {});
 }
 
 function bindBackgroundMusic() {
+  const button = document.getElementById("music-toggle");
+  const savedMuted = localStorage.getItem("music-muted") === "true";
+  const updateButton = () => {
+    const muted = backgroundMusic?.muted || false;
+    button.classList.toggle("muted", muted);
+    button.querySelector("b").textContent = muted ? "Play Music" : "Mute Music";
+    button.querySelector("span").textContent = muted ? "♩" : "♫";
+    button.setAttribute("aria-label", muted ? "Play background music" : "Mute background music");
+  };
+  if (!backgroundMusic) startBackgroundMusic();
+  backgroundMusic.muted = savedMuted;
+  updateButton();
+  button.addEventListener("click", () => {
+    backgroundMusic.muted = !backgroundMusic.muted;
+    localStorage.setItem("music-muted", backgroundMusic.muted);
+    if (!backgroundMusic.muted) startBackgroundMusic();
+    updateButton();
+  });
   startBackgroundMusic();
   const beginAfterInteraction = () => {
     startBackgroundMusic();
